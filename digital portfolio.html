@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rohit Kumar | Aerospace Engineering Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        space: ['Space Grotesk', 'sans-serif'],
+                    },
+                    colors: {
+                        aerospace: {
+                            900: '#0B1120',
+                            800: '#151F32',
+                            accent: '#38BDF8', // Cyan/Sky blue for tech feel
+                            glow: '#0EA5E9'
+                        }
+                    },
+                    backgroundImage: {
+                        'grid-pattern': "url(\"data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h40v40H0V0zm20 20h20v20H20V20zM0 20h20v20H0V20z' fill='%231e293b' fill-opacity='0.2' fill-rule='evenodd'/%3E%3C/svg%3E\")",
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom glow effects for a high-tech feel */
+        .glow-text { text-shadow: 0 0 15px rgba(56, 189, 248, 0.5); }
+        .glow-box:hover { box-shadow: 0 0 25px rgba(56, 189, 248, 0.2); border-color: rgba(56, 189, 248, 0.5); }
+        
+        /* Smooth fade-in animation */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in { animation: fadeIn 0.8s ease-out forwards; opacity: 0; }
+        .delay-100 { animation-delay: 100ms; }
+        .delay-200 { animation-delay: 200ms; }
+        .delay-300 { animation-delay: 300ms; }
+        
+        /* Stylized scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0B1120; }
+        ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #38BDF8; }
+    </style>
+</head>
+<body class="bg-aerospace-900 text-slate-300 font-sans antialiased selection:bg-aerospace-accent selection:text-aerospace-900 overflow-x-hidden relative">
+
+    <!-- Background Elements -->
+    <div class="fixed inset-0 bg-grid-pattern z-0 pointer-events-none opacity-50"></div>
+    <div class="fixed top-[-20%] left-[-10%] w-[50%] h-[50%] bg-blue-600/20 blur-[120px] rounded-full z-0 pointer-events-none"></div>
+    <div class="fixed bottom-[-20%] right-[-10%] w-[40%] h-[40%] bg-indigo-600/10 blur-[100px] rounded-full z-0 pointer-events-none"></div>
+
+    <!-- Navbar -->
+    <nav class="fixed w-full z-50 top-0 transition-all duration-300 backdrop-blur-md bg-aerospace-900/80 border-b border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex-shrink-0 font-space font-bold text-xl tracking-wider text-white">
+                    R<span class="text-aerospace-accent">.</span>K<span class="text-aerospace-accent">.</span>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="#about" class="hover:text-aerospace-accent transition-colors px-3 py-2 rounded-md text-sm font-medium">About</a>
+                        <a href="#skills" class="hover:text-aerospace-accent transition-colors px-3 py-2 rounded-md text-sm font-medium">Skills</a>
+                        <a href="#projects" class="hover:text-aerospace-accent transition-colors px-3 py-2 rounded-md text-sm font-medium">Projects</a>
+                        <a href="#experience" class="hover:text-aerospace-accent transition-colors px-3 py-2 rounded-md text-sm font-medium">Experience</a>
+                        <a href="#contact" class="hover:text-aerospace-accent transition-colors px-3 py-2 rounded-md text-sm font-medium">Contact</a>
+                    </div>
+                </div>
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-slate-300 hover:text-white focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-aerospace-800 border-b border-slate-700">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#about" class="block hover:bg-slate-700 hover:text-white px-3 py-2 rounded-md text-base font-medium">About</a>
+                <a href="#skills" class="block hover:bg-slate-700 hover:text-white px-3 py-2 rounded-md text-base font-medium">Skills</a>
+                <a href="#projects" class="block hover:bg-slate-700 hover:text-white px-3 py-2 rounded-md text-base font-medium">Projects</a>
+                <a href="#experience" class="block hover:bg-slate-700 hover:text-white px-3 py-2 rounded-md text-base font-medium">Experience</a>
+                <a href="#contact" class="block hover:bg-slate-700 hover:text-white px-3 py-2 rounded-md text-base font-medium">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <main class="relative z-10 pt-24 lg:pt-32 pb-16 lg:pb-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col justify-center min-h-[90vh]">
+        <div class="text-center md:text-left grid md:grid-cols-2 gap-12 items-center">
+            <div class="animate-fade-in">
+<h1 class="text-5xl md:text-6xl lg:text-7xl font-extrabold font-space text-white tracking-tight leading-tight mb-4">
+          ROHIT <br/><span class="text-transparent bg-clip-text bg-gradient-to-r from-aerospace-accent to-blue-600 glow-text">KUMAR</span>
+              </h1>
+                <h2 class="text-xl md:text-2xl text-slate-400 font-medium mb-6">
+                    Aerospace Engineering Student
+                </h2>
+                <p class="text-lg text-slate-400 mb-8 max-w-2xl mx-auto md:mx-0 leading-relaxed">
+                    Passionate about aircraft systems, propulsion, drone technology, AI in aerospace, and space research. Seeking opportunities to apply technical knowledge and innovative thinking to real-world aerospace projects.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+                    <a href="#projects" class="inline-flex justify-center items-center px-6 py-3 border border-transparent text-base font-medium rounded-lg text-aerospace-900 bg-aerospace-accent hover:bg-blue-400 transition-all shadow-[0_0_20px_rgba(56,189,248,0.4)] hover:shadow-[0_0_30px_rgba(56,189,248,0.6)]">
+                        View Projects <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                    <a href="#contact" class="inline-flex justify-center items-center px-6 py-3 border border-slate-600 text-base font-medium rounded-lg text-white hover:bg-slate-800 transition-all">
+                        Contact Me
+                    </a>
+                </div>
+          </div>
+            
+            <!-- Abstract Graphic representing aerospace/tech -->
+            <div class="hidden md:flex justify-center items-center animate-fade-in delay-200">
+                <div class="relative w-80 h-80">
+                    <div class="absolute inset-0 border border-slate-700 rounded-full animate-[spin_10s_linear_infinite]"></div>
+                    <div class="absolute inset-4 border border-blue-500/30 rounded-full animate-[spin_15s_linear_infinite_reverse]"></div>
+                    <div class="absolute inset-8 border border-dashed border-aerospace-accent/50 rounded-full animate-[spin_20s_linear_infinite]"></div>
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <i class="fas fa-rocket text-6xl text-slate-700 relative">
+                            <!-- Overlay to create a glowing effect -->
+                            <i class="fas fa-rocket text-6xl text-aerospace-accent absolute inset-0 blur-sm opacity-50"></i>
+                        </i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- About Section -->
+    <section id="about" class="relative z-10 py-20 bg-aerospace-800/30 border-y border-slate-800/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row gap-12">
+                <!-- Profile Details Card -->
+                <div class="w-full md:w-1/3">
+                  <div class="bg-aerospace-800/80 border border-slate-700 rounded-2xl p-8 sticky top-24 glow-box transition-all duration-300">
+                    <h3 class="text-2xl font-space font-bold text-white mb-6 border-b border-slate-700 pb-4">Profile Details</h3>
+                      <ul class="space-y-4 text-sm">
+                          <li class="flex justify-between items-center"><span class="text-slate-500">Name</span> <span class="font-medium text-slate-200 text-right">Rohit Kumar</span></li>
+                          <li class="flex justify-between items-center"><span class="text-slate-500">Institution</span> <span class="font-medium text-slate-200 text-right">VIT Bhopal</span></li>
+                          <li class="flex justify-between items-center"><span class="text-slate-500">Reg. No</span> <span class="font-medium text-aerospace-accent text-right">22BAS10015</span></li>
+                          <li class="flex justify-between items-center"><span class="text-slate-500">Course</span> <span class="font-medium text-slate-200 text-right">B.Tech</span></li>
+                          <li class="flex justify-between items-center"><span class="text-slate-500">Discipline</span> <span class="font-medium text-slate-200 text-right">Aerospace Engineering</span></li>
+                          <li class="flex justify-between items-center pt-4 border-t border-slate-700/50"><span class="text-slate-500">Email</span> <a href="mailto:rohitkumar2022@vitbhopal.ac.in" class="font-medium text-slate-200 text-right hover:text-aerospace-accent truncate ml-4">rohitkumar2022@vitbhopal.ac.in</a></li>
+                          <li class="flex justify-between items-center"><span class="text-slate-500">Phone</span> <span class="font-medium text-slate-200 text-right">+91 7488551482</span></li>
+                      </ul>
+                    </div>
+                </div>
+
+                <!-- Career Objective & Research Interests -->
+                <div class="w-full md:w-2/3 space-y-12">
+                    <div>
+                        <div class="flex items-center gap-4 mb-6">
+                            <div class="h-px bg-aerospace-accent w-12"></div>
+                            <h2 class="text-3xl font-space font-bold text-white">Career Objective</h2>
+                        </div>
+                        <p class="text-slate-400 leading-relaxed text-lg bg-slate-800/20 p-6 rounded-xl border border-slate-700/30 border-l-4 border-l-aerospace-accent">
+                            To secure a challenging role where I can leverage my academic background in Aerospace Engineering, combining traditional aeronautical principles with modern artificial intelligence and drone technologies. I aim to contribute to cutting-edge projects involving aircraft systems, propulsion, and space research.
+                        </p>
+                    </div>
+
+                    <div>
+                        <div class="flex items-center gap-4 mb-6">
+                            <div class="h-px bg-aerospace-accent w-12"></div>
+                            <h2 class="text-3xl font-space font-bold text-white">Research Interests</h2>
+                        </div>
+                        <div class="flex flex-wrap gap-3">
+                            <span class="px-4 py-2 bg-blue-900/20 border border-blue-800/50 rounded-full text-blue-300 text-sm flex items-center"><i class="fas fa-brain mr-2"></i> AI in Aerospace</span>
+                            <span class="px-4 py-2 bg-indigo-900/20 border border-indigo-800/50 rounded-full text-indigo-300 text-sm flex items-center"><i class="fas fa-moon mr-2"></i> Autonomous Lunar Navigation</span>
+                            <span class="px-4 py-2 bg-cyan-900/20 border border-cyan-800/50 rounded-full text-cyan-300 text-sm flex items-center"><i class="fas fa-helicopter mr-2"></i> Drone Technology</span>
+                            <span class="px-4 py-2 bg-purple-900/20 border border-purple-800/50 rounded-full text-purple-300 text-sm flex items-center"><i class="fas fa-space-shuttle mr-2"></i> Spacecraft Reentry Systems</span>
+                            <span class="px-4 py-2 bg-orange-900/20 border border-orange-800/50 rounded-full text-orange-300 text-sm flex items-center"><i class="fas fa-fire mr-2"></i> Propulsion Systems</span>
+                            <span class="px-4 py-2 bg-emerald-900/20 border border-emerald-800/50 rounded-full text-emerald-300 text-sm flex items-center"><i class="fas fa-robot mr-2"></i> Space Robotics</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="relative z-10 py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl font-space font-bold text-white inline-block relative">
+                Technical Toolkit
+                <div class="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-aerospace-accent rounded"></div>
+            </h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- CAD & Modeling -->
+            <div class="bg-aerospace-800/50 border border-slate-700 rounded-2xl p-8 hover:-translate-y-2 transition-transform duration-300 glow-box">
+                <div class="w-12 h-12 bg-blue-500/20 rounded-xl flex items-center justify-center mb-6 text-aerospace-accent">
+                    <i class="fas fa-cube text-2xl"></i>
+                </div>
+                <h3 class="text-xl font-bold text-white mb-4">CAD & Design</h3>
+                <div class="space-y-3">
+                    <div class="flex items-center gap-3"><i class="fas fa-check text-green-400 text-sm"></i> <span>Fusion 360</span></div>
+                    <div class="flex items-center gap-3"><i class="fas fa-check text-green-400 text-sm"></i> <span>CATIA</span></div>
+                    <div class="flex items-center gap-3"><i class="fas fa-check text-green-400 text-sm"></i> <span>SolidWorks</span></div>
+                    <div class="flex items-center gap-3"><i class="fas fa-check text-green-400 text-sm"></i> <span>Drone Design</span></div>
+                </div>
+            </div>
+
+            <!-- Programming & Web -->
+            <div class="bg-aerospace-800/50 border border-slate-700 rounded-2xl p-8 hover:-translate-y-2 transition-transform duration-300 glow-box">
+                <div class="w-12 h-12 bg-indigo-500/20 rounded-xl flex items-center justify-center mb-6 text-indigo-400">
+                    <i class="fas fa-code text-2xl"></i>
+                </div>
+                <h3 class="text-xl font-bold text-white mb-4">Programming & Web</h3>
+                <div class="space-y-3">
+                    <div class="flex items-center gap-3"><i class="fab fa-python text-yellow-400 w-4 text-center"></i> <span>Python</span></div>
+                    <div class="flex items-center gap-3"><i class="fab fa-html5 text-orange-500 w-4 text-center"></i> <span>HTML</span></div>
+                    <div class="flex items-center gap-3"><i class="fab fa-css3-alt text-blue-500 w-4 text-center"></i> <span>CSS</span></div>
+                    <div class="flex items-center gap-3"><i class="fab fa-js text-yellow-300 w-4 text-center"></i> <span>JavaScript</span></div>
+                </div>
+            </div>
+
+            <!-- Tools & Simulation -->
+            <div class="bg-aerospace-800/50 border border-slate-700 rounded-2xl p-8 hover:-translate-y-2 transition-transform duration-300 glow-box">
+                <div class="w-12 h-12 bg-emerald-500/20 rounded-xl flex items-center justify-center mb-6 text-emerald-400">
+                    <i class="fas fa-microchip text-2xl"></i>
+                </div>
+                <h3 class="text-xl font-bold text-white mb-4">Software & Simulation</h3>
+                <div class="space-y-3">
+                    <div class="flex items-center gap-3"><i class="fas fa-wind text-slate-400 w-4 text-center"></i> <span>Aerospace Simulation Tools</span></div>
+                    <div class="flex items-center gap-3"><i class="fas fa-gamepad text-slate-400 w-4 text-center"></i> <span>Unreal Engine 5</span></div>
+                    <div class="flex items-center gap-3"><i class="fas fa-chart-line text-slate-400 w-4 text-center"></i> <span>MATLAB & Simulink</span></div>
+                    <div class="flex items-center gap-3"><i class="fas fa-file-word text-slate-400 w-4 text-center"></i> <span>Microsoft Office</span></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Design & Hobbies Row -->
+        <div class="mt-12 flex flex-wrap justify-center gap-6">
+            <div class="bg-aerospace-800/30 border border-slate-700/50 rounded-lg px-6 py-4 flex items-center gap-3">
+                <i class="fas fa-palette text-pink-400"></i>
+                <span>Graphic Design (After Effects, Illustrator)</span>
+            </div>
+            <div class="bg-aerospace-800/30 border border-slate-700/50 rounded-lg px-6 py-4 flex items-center gap-3">
+                <i class="fas fa-gamepad text-purple-400"></i>
+                <span>Gaming & Esports Content</span>
+            </div>
+            <div class="bg-aerospace-800/30 border border-slate-700/50 rounded-lg px-6 py-4 flex items-center gap-3">
+                <i class="fas fa-video text-red-400"></i>
+                <span>Video Editing</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="relative z-10 py-24 bg-aerospace-800/30 border-y border-slate-800/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center gap-4 mb-12">
+                <div class="h-px bg-slate-700 flex-grow"></div>
+                <h2 class="text-3xl md:text-4xl font-space font-bold text-white px-4">Featured Projects</h2>
+                <div class="h-px bg-slate-700 flex-grow"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project 1 -->
+                <div class="group relative bg-aerospace-900 border border-slate-700 rounded-2xl overflow-hidden hover:border-aerospace-accent transition-all duration-300">
+                    <div class="h-48 bg-gradient-to-br from-blue-900/50 to-aerospace-900 relative overflow-hidden flex items-center justify-center border-b border-slate-800">
+                        <i class="fas fa-satellite text-6xl text-blue-500/30 group-hover:scale-110 transition-transform duration-500"></i>
+                        <div class="absolute inset-0 bg-grid-pattern opacity-20"></div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-xl font-bold text-white font-space group-hover:text-aerospace-accent transition-colors">AI-Based Reentry Vehicle Navigation</h3>
+                        </div>
+                        <p class="text-slate-400 text-sm mb-6 line-clamp-3">
+                            Developed concepts for AI-assisted guidance and navigation systems specifically tailored for reentry space vehicles, utilizing machine learning algorithms and computer vision techniques for enhanced precision.
+                        </p>
+                        <div class="flex gap-2 flex-wrap mt-auto">
+                            <span class="text-xs font-medium px-2.5 py-1 bg-slate-800 text-slate-300 rounded-md">Machine Learning</span>
+                            <span class="text-xs font-medium px-2.5 py-1 bg-slate-800 text-slate-300 rounded-md">Computer Vision</span>
+                            <span class="text-xs font-medium px-2.5 py-1 bg-slate-800 text-slate-300 rounded-md">Aerodynamics</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="group relative bg-aerospace-900 border border-slate-700 rounded-2xl overflow-hidden hover:border-aerospace-accent transition-all duration-300">
+                    <div class="h-48 bg-gradient-to-br from-indigo-900/50 to-aerospace-900 relative overflow-hidden flex items-center justify-center border-b border-slate-800">
+                        <i class="fas fa-drone text-6xl text-indigo-500/30 group-hover:scale-110 transition-transform duration-500"></i>
+                        <!-- Fallback icon if fa-drone is not rendering perfectly in all FA versions -->
+                        <i class="fas fa-helicopter text-6xl text-indigo-500/30 absolute inset-0 m-auto flex items-center justify-center opacity-0"></i>
+                        <div class="absolute inset-0 bg-grid-pattern opacity-20"></div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-xl font-bold text-white font-space group-hover:text-aerospace-accent transition-colors">Tricopter Drone Design</h3>
+                        </div>
+                        <p class="text-slate-400 text-sm mb-6 line-clamp-3">
+                            Designed a comprehensive tricopter drone frame model using Fusion 360. The design strictly focused on aerodynamic stability, maneuverability, and a lightweight structural framework for optimal flight time.
+                        </p>
+                        <div class="flex gap-2 flex-wrap mt-auto">
+                            <span class="text-xs font-medium px-2.5 py-1 bg-slate-800 text-slate-300 rounded-md">Fusion 360</span>
+                            <span class="text-xs font-medium px-2.5 py-1 bg-slate-800 text-slate-300 rounded-md">CAD</span>
+                            <span class="text-xs font-medium px-2.5 py-1 bg-slate-800 text-slate-300 rounded-md">Structural Analysis</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="group relative bg-aerospace-900 border border-slate-700 rounded-2xl overflow-hidden hover:border-aerospace-accent transition-all duration-300">
+                    <div class="h-48 bg-gradient-to-br from-emerald-900/50 to-aerospace-900 relative overflow-hidden flex items-center justify-center border-b border-slate-800">
+                        <i class="fas fa-laptop-code text-6xl text-emerald-500/30 group-hover:scale-110 transition-transform duration-500"></i>
+                        <div class="absolute inset-0 bg-grid-pattern opacity-20"></div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-xl font-bold text-white font-space group-hover:text-aerospace-accent transition-colors">Aerospace Portfolio Website</h3>
+                        </div>
+                        <p class="text-slate-400 text-sm mb-6 line-clamp-3">
+                            Created a fully responsive and visually striking digital portfolio using modern web technologies to showcase engineering projects, CAD models, and technical skills effectively to recruiters and peers.
+                        </p>
+                        <div class="flex gap-2 flex-wrap mt-auto">
+                            <span class="text-xs font-medium px-2.5 py-1 bg-slate-800 text-slate-300 rounded-md">HTML</span>
+                            <span class="text-xs font-medium px-2.5 py-1 bg-slate-800 text-slate-300 rounded-md">CSS / Tailwind</span>
+                            <span class="text-xs font-medium px-2.5 py-1 bg-slate-800 text-slate-300 rounded-md">JavaScript</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience & Education Timeline -->
+    <section id="experience" class="relative z-10 py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl font-space font-bold text-white inline-block relative">
+                Journey & Milestones
+                <div class="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-aerospace-accent rounded"></div>
+            </h2>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+            <!-- Timeline Column 1 -->
+            <div>
+                <h3 class="text-2xl font-bold text-white mb-8 flex items-center"><i class="fas fa-graduation-cap text-aerospace-accent mr-3"></i> Education</h3>
+                <div class="space-y-8 relative before:absolute before:inset-0 before:ml-2.5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-slate-700 before:to-transparent">
+                    
+                    <!-- Item 1 -->
+                    <div class="relative flex items-start gap-6 ml-6">
+                        <div class="absolute -left-6 md:-left-[27px] mt-1.5 w-3 h-3 rounded-full bg-aerospace-accent shadow-[0_0_10px_#38BDF8]"></div>
+                        <div class="bg-aerospace-800/40 border border-slate-700 p-6 rounded-xl w-full">
+                            <span class="text-sm text-aerospace-accent font-medium mb-1 block">2022 – Present</span>
+                            <h4 class="text-lg font-bold text-white">Bachelor of Technology (B.Tech)</h4>
+                            <div class="text-slate-400 font-medium mb-3">Aerospace Engineering</div>
+                            <div class="text-sm text-slate-300"><i class="fas fa-university mr-2"></i> VIT Bhopal</div>
+                            <div class="mt-4 inline-block px-3 py-1 bg-green-900/30 border border-green-800 text-green-400 text-sm rounded">CGPA: 8.1 / 10</div>
+                        </div>
+                    </div>
+
+                    <!-- Item 2 -->
+                    <div class="relative flex items-start gap-6 ml-6">
+                        <div class="absolute -left-6 md:-left-[27px] mt-1.5 w-3 h-3 rounded-full bg-slate-600"></div>
+                        <div class="bg-aerospace-800/40 border border-slate-700 p-6 rounded-xl w-full">
+                            <span class="text-sm text-slate-500 font-medium mb-1 block">Completed 2021</span>
+                            <h4 class="text-lg font-bold text-white">Higher Secondary Education</h4>
+                            <div class="text-slate-400 font-medium mb-3">Science Stream</div>
+                            <div class="text-sm text-slate-300"><i class="fas fa-school mr-2"></i> St. Thomas High School</div>
+                            <div class="mt-4 inline-block px-3 py-1 bg-slate-800 border border-slate-700 text-slate-300 text-sm rounded">Percentage: 63%</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Timeline Column 2 -->
+            <div>
+                <h3 class="text-2xl font-bold text-white mb-8 flex items-center"><i class="fas fa-briefcase text-aerospace-accent mr-3"></i> Experience & Achievements</h3>
+                <div class="space-y-8 relative before:absolute before:inset-0 before:ml-2.5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-slate-700 before:to-transparent">
+                    
+                    <!-- Internship -->
+                    <div class="relative flex items-start gap-6 ml-6">
+                        <div class="absolute -left-6 md:-left-[27px] mt-1.5 w-3 h-3 rounded-full bg-indigo-500 shadow-[0_0_10px_#6366f1]"></div>
+                        <div class="bg-aerospace-800/40 border border-slate-700 p-6 rounded-xl w-full">
+                            <span class="text-sm text-indigo-400 font-medium mb-1 block">Internship / Training</span>
+                            <h4 class="text-lg font-bold text-white">Aerospace Internship</h4>
+                            <ul class="mt-4 space-y-2 text-sm text-slate-400 list-disc list-inside">
+                                <li>Worked on CubeSat systems and aerospace engineering workflows.</li>
+                                <li>Learned CAD modelling and engineering simulation concepts.</li>
+                                <li>Studied orbital mechanics and electronics integration.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Achievements -->
+                    <div class="relative flex items-start gap-6 ml-6">
+                        <div class="absolute -left-6 md:-left-[27px] mt-1.5 w-3 h-3 rounded-full bg-yellow-500 shadow-[0_0_10px_#eab308]"></div>
+                        <div class="bg-aerospace-800/40 border border-slate-700 p-6 rounded-xl w-full">
+                            <span class="text-sm text-yellow-400 font-medium mb-1 block">Highlights</span>
+                            <h4 class="text-lg font-bold text-white">Key Achievements</h4>
+                            <ul class="mt-4 space-y-2 text-sm text-slate-400">
+                                <li class="flex items-start"><i class="fas fa-star text-yellow-500 mt-1 mr-2 text-xs"></i> <span>Developed aerospace research ideas on lunar navigation systems.</span></li>
+                                <li class="flex items-start"><i class="fas fa-star text-yellow-500 mt-1 mr-2 text-xs"></i> <span>Built multiple creative digital poster designs.</span></li>
+                                <li class="flex items-start"><i class="fas fa-star text-yellow-500 mt-1 mr-2 text-xs"></i> <span>Actively participated in technical and engineering activities at VIT.</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certifications Section -->
+    <section class="relative z-10 py-16 bg-aerospace-900 border-t border-slate-800/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h3 class="text-2xl font-bold text-white mb-8 text-center"><i class="fas fa-certificate text-aerospace-accent mr-3"></i> Certifications</h3>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                <div class="bg-slate-800/30 border border-slate-700 p-4 rounded-lg flex items-center gap-3">
+                    <i class="fas fa-award text-slate-400 text-xl"></i>
+                    <div>
+                        <div class="text-sm font-bold text-white">Aircraft Design</div>
+                        <div class="text-xs text-slate-400">NPTEL</div>
+                    </div>
+                </div>
+                <div class="bg-slate-800/30 border border-slate-700 p-4 rounded-lg flex items-center gap-3">
+                    <i class="fas fa-award text-slate-400 text-xl"></i>
+                    <div>
+                        <div class="text-sm font-bold text-white">Introduction to CFD</div>
+                        <div class="text-xs text-slate-400">NPTEL</div>
+                    </div>
+                </div>
+                <div class="bg-slate-800/30 border border-slate-700 p-4 rounded-lg flex items-center gap-3">
+                    <i class="fas fa-award text-slate-400 text-xl"></i>
+                    <div>
+                        <div class="text-sm font-bold text-white">Project Management</div>
+                        <div class="text-xs text-slate-400">Rice University</div>
+                    </div>
+                </div>
+                <div class="bg-slate-800/30 border border-slate-700 p-4 rounded-lg flex items-center gap-3">
+                    <i class="fas fa-award text-slate-400 text-xl"></i>
+                    <div>
+                        <div class="text-sm font-bold text-white">MATLAB & Simulink</div>
+                        <div class="text-xs text-slate-400">MathWorks</div>
+                    </div>
+                </div>
+                <div class="bg-slate-800/30 border border-slate-700 p-4 rounded-lg flex items-center gap-3">
+                    <i class="fas fa-award text-slate-400 text-xl"></i>
+                    <div>
+                        <div class="text-sm font-bold text-white">Python Essentials</div>
+                        <div class="text-xs text-slate-400">VITyarthi</div>
+                    </div>
+                </div>
+                <div class="bg-slate-800/30 border border-slate-700 p-4 rounded-lg flex items-center gap-3">
+                    <i class="fas fa-award text-slate-400 text-xl"></i>
+                    <div>
+                        <div class="text-sm font-bold text-white">Fundamentals of AI & ML</div>
+                        <div class="text-xs text-slate-400">VITyarthi</div>
+                    </div>
+                </div>
+                <div class="bg-slate-800/30 border border-slate-700 p-4 rounded-lg flex items-center gap-3">
+                    <i class="fas fa-award text-slate-400 text-xl"></i>
+                    <div>
+                        <div class="text-sm font-bold text-white">SolidWorks Course</div>
+                        <div class="text-xs text-slate-400">Udemy</div>
+                    </div>
+                </div>
+                <div class="bg-slate-800/30 border border-slate-700 p-4 rounded-lg flex items-center gap-3">
+                    <i class="fas fa-award text-slate-400 text-xl"></i>
+                    <div>
+                        <div class="text-sm font-bold text-white">Intro to Unreal Engine 5</div>
+                        <div class="text-xs text-slate-400">Epic/General</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="relative z-10 py-24 bg-gradient-to-b from-aerospace-800/30 to-aerospace-900">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-4xl font-space font-bold text-white mb-6">Let's Connect</h2>
+            <p class="text-slate-400 mb-10 text-lg">
+                I am actively looking for opportunities and collaborative projects in the aerospace domain. Feel free to reach out!
+            </p>
+            
+            <div class="flex flex-col sm:flex-row justify-center items-center gap-6">
+                <a href="mailto:rohitkumar2022@vitbhopal.ac.in" class="w-full sm:w-auto flex items-center justify-center gap-3 bg-slate-800 hover:bg-slate-700 border border-slate-600 px-8 py-4 rounded-xl text-white transition-all group">
+                    <div class="bg-blue-500/20 p-2 rounded-lg group-hover:bg-blue-500/40 transition-colors">
+                        <i class="fas fa-envelope text-aerospace-accent"></i>
+                    </div>
+                    <span>rohitkumar2022@vitbhopal.ac.in</span>
+                </a>
+                <a href="tel:+917488551482" class="w-full sm:w-auto flex items-center justify-center gap-3 bg-slate-800 hover:bg-slate-700 border border-slate-600 px-8 py-4 rounded-xl text-white transition-all group">
+                    <div class="bg-green-500/20 p-2 rounded-lg group-hover:bg-green-500/40 transition-colors">
+                        <i class="fas fa-phone-alt text-green-400"></i>
+                    </div>
+                    <span>+91 7488551482</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Assistant Widget -->
+    <div id="ai-chat-widget" class="fixed bottom-6 right-6 z-[100] flex flex-col items-end">
+        <!-- Chat Window -->
+        <div id="chat-window" class="hidden mb-4 w-[calc(100vw-3rem)] sm:w-96 bg-aerospace-900 border border-slate-700 rounded-2xl shadow-2xl overflow-hidden flex-col transition-all duration-300">
+            <div class="bg-slate-800/80 backdrop-blur-sm p-4 border-b border-slate-700 flex justify-between items-center">
+                <div class="flex items-center gap-3">
+                    <div class="relative flex h-3 w-3">
+                      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-aerospace-accent opacity-75"></span>
+                      <span class="relative inline-flex rounded-full h-3 w-3 bg-aerospace-accent"></span>
+                    </div>
+                    <h3 class="text-white font-space font-bold text-sm tracking-wide">Rohit's AI Assistant</h3>
+                </div>
+                <button id="close-chat" class="text-slate-400 hover:text-white transition-colors focus:outline-none"><i class="fas fa-times"></i></button>
+            </div>
+            <div id="chat-messages" class="flex-1 p-4 h-80 overflow-y-auto flex flex-col gap-4 scroll-smooth bg-aerospace-900/50">
+                <div class="flex items-start gap-2">
+                    <div class="bg-slate-800 text-slate-200 p-3 rounded-2xl rounded-tl-none border border-slate-700 text-sm max-w-[85%] leading-relaxed shadow-sm">
+                        Hi! I'm an AI assistant trained on Rohit's portfolio. I can answer questions about his experience, projects, and skills. How can I help you today?
+                    </div>
+                </div>
+            </div>
+            <div class="p-3 bg-slate-800/80 backdrop-blur-sm border-t border-slate-700">
+                <form id="chat-form" class="flex gap-2">
+                    <input type="text" id="chat-input" class="flex-1 bg-aerospace-900 border border-slate-600 text-white text-sm rounded-xl focus:ring-1 focus:ring-aerospace-accent focus:border-aerospace-accent block p-3 outline-none placeholder-slate-400 transition-all" placeholder="Ask about Rohit..." required autocomplete="off">
+                    <button type="submit" id="chat-submit-btn" class="bg-aerospace-accent text-aerospace-900 hover:bg-blue-400 font-bold rounded-xl text-sm px-4 py-3 focus:outline-none transition-all shadow-[0_0_15px_rgba(56,189,248,0.3)] hover:shadow-[0_0_20px_rgba(56,189,248,0.5)]">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Toggle Button -->
+        <button id="toggle-chat" class="bg-aerospace-accent hover:bg-blue-400 text-aerospace-900 rounded-full w-14 h-14 flex items-center justify-center shadow-[0_0_20px_rgba(56,189,248,0.4)] hover:shadow-[0_0_30px_rgba(56,189,248,0.6)] hover:-translate-y-1 transition-all duration-300 z-50 focus:outline-none group">
+            <i class="fas fa-robot text-2xl group-hover:scale-110 transition-transform"></i>
+        </button>
+    </div>
+
+    <!-- Footer -->
+    <footer class="relative z-10 border-t border-slate-800 bg-aerospace-900 py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="text-slate-500 text-sm">
+                &copy; 2026 Rohit Kumar. All rights reserved.
+            </div>
+            <div class="flex space-x-6 text-slate-400">
+                <a href="#" class="hover:text-white transition-colors" aria-label="LinkedIn Placeholder" onclick="return false;"><i class="fab fa-linkedin text-xl"></i></a>
+                <a href="#" class="hover:text-white transition-colors" aria-label="GitHub Placeholder" onclick="return false;"><i class="fab fa-github text-xl"></i></a>
+                <a href="#" class="hover:text-white transition-colors" aria-label="Twitter Placeholder" onclick="return false;"><i class="fab fa-twitter text-xl"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Mobile Menu Toggle
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu on click (smooth scroll handles the rest)
+        menu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                menu.classList.add('hidden');
+            });
+        });
+
+        // Sticky Navbar styling on scroll
+        const nav = document.querySelector('nav');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 10) {
+                nav.classList.add('shadow-lg');
+                nav.classList.replace('bg-aerospace-900/80', 'bg-aerospace-900/95');
+            } else {
+                nav.classList.remove('shadow-lg');
+                nav.classList.replace('bg-aerospace-900/95', 'bg-aerospace-900/80');
+            }
+        });
+
+        const toggleChatBtn = document.getElementById('toggle-chat');
+        const closeChatBtn = document.getElementById('close-chat');
+        const chatWindow = document.getElementById('chat-window');
+        const chatForm = document.getElementById('chat-form');
+        const chatInput = document.getElementById('chat-input');
+        const chatMessages = document.getElementById('chat-messages');
+        const chatSubmitBtn = document.getElementById('chat-submit-btn');
+
+        let chatHistory = [];
+
+        // This prompt gives the LLM context about you so it acts as your personal agent
+        const systemPrompt = `You are a helpful, professional AI assistant for Rohit Kumar, an Aerospace Engineering student at VIT Bhopal. 
+        Your job is to answer visitor questions based ONLY on the following portfolio details:
+        - Profile: B.Tech in Aerospace Engineering at VIT Bhopal (2022-Present, CGPA: 8.1). High School at St. Thomas (63%, 2021).
+        - Skills: CAD (Fusion 360, CATIA, SolidWorks), Programming (Python, HTML, CSS, JS), Drone Design, Unreal Engine 5, MATLAB & Simulink, Graphic Design.
+        - Projects: 1) AI-Based Reentry Vehicle Navigation (Guidance systems using ML/CV). 2) Tricopter Drone Design (Fusion 360, focus on stability/lightweight). 3) Aerospace Portfolio Website.
+        - Experience: Aerospace Internship (CubeSat systems, CAD modeling, orbital mechanics).
+        - Interests: AI in Aerospace, Autonomous Lunar Navigation, Drone Tech, Spacecraft Reentry Systems.
+        - Contact: Email is rohitkumar2022@vitbhopal.ac.in. Phone is +91 7488551482.
+        
+        Rules: Keep answers short, enthusiastic, and conversational (1-3 sentences). If someone asks something unrelated to Rohit's aerospace portfolio, politely steer them back. Do not hallucinate external links.`;
+
+        // Toggle visibility of the chat window
+        toggleChatBtn.addEventListener('click', () => {
+            chatWindow.classList.toggle('hidden');
+            chatWindow.classList.toggle('flex');
+            if(!chatWindow.classList.contains('hidden')) {
+                chatInput.focus();
+            }
+        });
+
+        closeChatBtn.addEventListener('click', () => {
+            chatWindow.classList.add('hidden');
+            chatWindow.classList.remove('flex');
+        });
+
+        chatForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const messageText = chatInput.value.trim();
+            if (!messageText) return;
+
+            // 1. Add User Message to UI
+            addMessageToUI('user', messageText);
+            chatInput.value = '';
+            chatInput.disabled = true;
+            chatSubmitBtn.innerHTML = '<i class="fas fa-circle-notch fa-spin"></i>';
+
+            // 2. Add Loading Message for Bot
+            const loadingId = 'loading-' + Date.now();
+            addMessageToUI('bot', '<div class="flex gap-1 items-center"><div class="w-2 h-2 bg-slate-400 rounded-full animate-bounce"></div><div class="w-2 h-2 bg-slate-400 rounded-full animate-bounce delay-100"></div><div class="w-2 h-2 bg-slate-400 rounded-full animate-bounce delay-200"></div></div>', loadingId);
+
+            // 3. Update Chat History
+            chatHistory.push({ role: 'user', parts: [{ text: messageText }] });
+
+            try {
+                // Call Gemini API
+                const apiKey = ""; // Canvas injects this automatically
+                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key=${apiKey}`;
+
+                const payload = {
+                    contents: chatHistory,
+                    systemInstruction: { parts: [{ text: systemPrompt }] }
+                };
+
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                if (!response.ok) throw new Error("API Network Response was not ok");
+
+                const result = await response.json();
+                const botReply = result.candidates?.[0]?.content?.parts?.[0]?.text || "I'm having trouble retrieving that information right now.";
+
+                // 4. Handle Bot Response
+                document.getElementById(loadingId)?.remove();
+                addMessageToUI('bot', botReply);
+                chatHistory.push({ role: 'model', parts: [{ text: botReply }] });
+
+            } catch (error) {
+                console.error("Gemini API Error:", error);
+                document.getElementById(loadingId)?.remove();
+                addMessageToUI('bot', "Sorry, I'm experiencing a temporary network issue. Please try again or contact Rohit directly!");
+            } finally {
+                chatInput.disabled = false;
+                chatSubmitBtn.innerHTML = '<i class="fas fa-paper-plane"></i>';
+                chatInput.focus();
+            }
+        });
+
+        function addMessageToUI(sender, text, id = null) {
+            const msgDiv = document.createElement('div');
+            msgDiv.className = sender === 'user' ? 'flex items-start gap-2 flex-row-reverse' : 'flex items-start gap-2';
+            if (id) msgDiv.id = id;
+
+            const bubble = document.createElement('div');
+            if (sender === 'user') {
+                bubble.className = 'bg-aerospace-accent text-aerospace-900 p-3 rounded-2xl rounded-tr-none text-sm max-w-[85%] font-medium shadow-sm';
+            } else {
+                bubble.className = 'bg-slate-800 text-slate-200 p-3 rounded-2xl rounded-tl-none border border-slate-700 text-sm max-w-[85%] leading-relaxed shadow-sm';
+            }
+            
+            // Render line breaks properly for text (avoids rendering HTML if we just use innerText, except for our loading dots)
+            if (text.includes('animate-bounce') || text.includes('fa-spin')) {
+                bubble.innerHTML = text;
+            } else {
+                bubble.innerText = text;
+            }
+
+            msgDiv.appendChild(bubble);
+            chatMessages.appendChild(msgDiv);
+            
+            // Scroll to bottom
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+    </script>
+</body>
+</html>
